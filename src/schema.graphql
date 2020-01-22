@@ -1,0 +1,61 @@
+scalar Date
+
+
+type Query {
+    astronauts(query: String, first: Int, skip: Int, after: String): [Astronaut!]!
+    flights(query: String, first: Int, skip: Int, after: String): [Flight!]!
+}
+
+type Mutation {
+    createAstronaut(data: AstronautCreateInput!): Astronaut!
+    deleteAstronaut(id: ID!): Astronaut!
+    updateAstronaut(id: ID!, data: UpdateAstronautInput): Astronaut!
+    createFlight(data: FlightCreateInput!): Flight!
+    deleteFlight(id: ID!): Flight!
+    updateFlight(id: ID!, data: UpdateFlightInput!): Flight!
+}
+
+input AstronautCreateInput {
+    name: String!
+    surname: String!
+    experience: String!
+    age: Int!
+    flight: ID
+}
+
+input UpdateAstronautInput {
+    name: String
+    surname: String
+    experience: String
+    age: Int
+    flight: ID
+}
+
+input FlightCreateInput {
+    date: Date!
+    name: String!
+    astronaut: ID
+
+}
+
+input UpdateFlightInput {
+    date: Date!
+    name: String!
+
+}
+
+type Astronaut {
+    id: ID!
+    name: String!
+    surname: String!
+    experience: Int!
+    age: Int!
+    flight(query: String, first: Int, skip: Int, after: String): Flight!
+}
+
+type Flight {
+    id: ID!
+    date: Date!
+    name: String!
+    astronaut(query: String, first: Int, skip: Int, after: String): [Astronaut]
+}

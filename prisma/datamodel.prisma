@@ -1,0 +1,18 @@
+type Astronaut {
+    id: ID! @id
+    createdAt: DateTime! @createdAt
+    name: String!
+    surname: String!
+    experience: String!
+    age: Int!
+    flight: Flight
+}
+
+type Flight {
+    id: ID! @id
+    name: String!
+    date: DateTime!
+    astronaut: [ Astronaut ] 
+    createdAt: DateTime! @createdAt
+    
+}
