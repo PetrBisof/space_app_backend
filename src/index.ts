@@ -39,8 +39,10 @@ const resolvers = {
 
     Mutation: {
        async createAstronaut(parent, args, ctx, info) {
-        let pocet : Array<object>  /* astronautsForFlight */ = await ctx.prisma.flight({ id: args.data.flight }).astronaut()/* .then(function(data){console.log(data.length)}) */
-        if (pocet != null && pocet.length >= 5){
+        let pocet : Array<object>  /* astronautsForFlight */ = await ctx.prisma.flight({ id: args.data.flight }).astronaut()
+        let kapacita : Number  /* astronautsForFlight */ = await ctx.prisma.flight({ id: args.data.flight }).capacity()
+        console.log(kapacita)
+        if (pocet != null && pocet.length >= kapacita){
             throw new Error('Unable to connect astronaut with this flight. Too many astronauts.')
         }
             return ctx.prisma.createAstronaut({

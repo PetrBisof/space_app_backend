@@ -324,6 +324,7 @@ type Flight {
   id: ID!
   name: String!
   date: DateTime!
+  capacity: Int
   astronaut(where: AstronautWhereInput, orderBy: AstronautOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Astronaut!]
   createdAt: DateTime!
 }
@@ -338,6 +339,7 @@ input FlightCreateInput {
   id: ID
   name: String!
   date: DateTime!
+  capacity: Int
   astronaut: AstronautCreateManyWithoutFlightInput
 }
 
@@ -350,6 +352,7 @@ input FlightCreateWithoutAstronautInput {
   id: ID
   name: String!
   date: DateTime!
+  capacity: Int
 }
 
 type FlightEdge {
@@ -364,6 +367,8 @@ enum FlightOrderByInput {
   name_DESC
   date_ASC
   date_DESC
+  capacity_ASC
+  capacity_DESC
   createdAt_ASC
   createdAt_DESC
 }
@@ -372,6 +377,7 @@ type FlightPreviousValues {
   id: ID!
   name: String!
   date: DateTime!
+  capacity: Int
   createdAt: DateTime!
 }
 
@@ -396,12 +402,14 @@ input FlightSubscriptionWhereInput {
 input FlightUpdateInput {
   name: String
   date: DateTime
+  capacity: Int
   astronaut: AstronautUpdateManyWithoutFlightInput
 }
 
 input FlightUpdateManyMutationInput {
   name: String
   date: DateTime
+  capacity: Int
 }
 
 input FlightUpdateOneWithoutAstronautInput {
@@ -416,6 +424,7 @@ input FlightUpdateOneWithoutAstronautInput {
 input FlightUpdateWithoutAstronautDataInput {
   name: String
   date: DateTime
+  capacity: Int
 }
 
 input FlightUpsertWithoutAstronautInput {
@@ -460,6 +469,14 @@ input FlightWhereInput {
   date_lte: DateTime
   date_gt: DateTime
   date_gte: DateTime
+  capacity: Int
+  capacity_not: Int
+  capacity_in: [Int!]
+  capacity_not_in: [Int!]
+  capacity_lt: Int
+  capacity_lte: Int
+  capacity_gt: Int
+  capacity_gte: Int
   astronaut_every: AstronautWhereInput
   astronaut_some: AstronautWhereInput
   astronaut_none: AstronautWhereInput

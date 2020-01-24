@@ -35,13 +35,14 @@ input FlightCreateInput {
     date: Date!
     name: String!
     astronaut: ID
+    capacity: Int
 
 }
 
 input UpdateFlightInput {
     date: Date!
     name: String!
-
+    capacity: Int
 }
 
 type Astronaut {
@@ -57,5 +58,6 @@ type Flight {
     id: ID!
     date: Date!
     name: String!
+    capacity: Int
     astronaut(query: String, first: Int, skip: Int, after: String): [Astronaut]
 }

@@ -12,6 +12,7 @@ type Flight {
     id: ID! @id
     name: String!
     date: DateTime!
+    capacity: Int @default(value: 5)
     astronaut: [ Astronaut ] 
     createdAt: DateTime! @createdAt
     

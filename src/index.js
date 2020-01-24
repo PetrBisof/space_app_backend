@@ -85,13 +85,17 @@ var resolvers = {
     Mutation: {
         createAstronaut: function (parent, args, ctx, info) {
             return __awaiter(this, void 0, void 0, function () {
-                var pocet;
+                var pocet, kapacita;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, ctx.prisma.flight({ id: args.data.flight }).astronaut()]; /* .then(function(data){console.log(data.length)}) */
+                        case 0: return [4 /*yield*/, ctx.prisma.flight({ id: args.data.flight }).astronaut()];
                         case 1:
-                            pocet = _a.sent() /* .then(function(data){console.log(data.length)}) */;
-                            if (pocet != null && pocet.length >= 5) {
+                            pocet = _a.sent();
+                            return [4 /*yield*/, ctx.prisma.flight({ id: args.data.flight }).capacity()];
+                        case 2:
+                            kapacita = _a.sent();
+                            console.log(kapacita);
+                            if (pocet != null && pocet.length >= kapacita) {
                                 throw new Error('Unable to connect astronaut with this flight. Too many astronauts.');
                             }
                             return [2 /*return*/, ctx.prisma.createAstronaut(__assign(__assign({}, args.data), { flight: {

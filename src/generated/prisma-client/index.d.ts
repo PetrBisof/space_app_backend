@@ -161,6 +161,8 @@ export type FlightOrderByInput =
   | "name_DESC"
   | "date_ASC"
   | "date_DESC"
+  | "capacity_ASC"
+  | "capacity_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC";
 
@@ -286,6 +288,14 @@ export interface FlightWhereInput {
   date_lte?: Maybe<DateTimeInput>;
   date_gt?: Maybe<DateTimeInput>;
   date_gte?: Maybe<DateTimeInput>;
+  capacity?: Maybe<Int>;
+  capacity_not?: Maybe<Int>;
+  capacity_in?: Maybe<Int[] | Int>;
+  capacity_not_in?: Maybe<Int[] | Int>;
+  capacity_lt?: Maybe<Int>;
+  capacity_lte?: Maybe<Int>;
+  capacity_gt?: Maybe<Int>;
+  capacity_gte?: Maybe<Int>;
   astronaut_every?: Maybe<AstronautWhereInput>;
   astronaut_some?: Maybe<AstronautWhereInput>;
   astronaut_none?: Maybe<AstronautWhereInput>;
@@ -324,6 +334,7 @@ export interface FlightCreateWithoutAstronautInput {
   id?: Maybe<ID_Input>;
   name: String;
   date: DateTimeInput;
+  capacity?: Maybe<Int>;
 }
 
 export interface AstronautUpdateInput {
@@ -346,6 +357,7 @@ export interface FlightUpdateOneWithoutAstronautInput {
 export interface FlightUpdateWithoutAstronautDataInput {
   name?: Maybe<String>;
   date?: Maybe<DateTimeInput>;
+  capacity?: Maybe<Int>;
 }
 
 export interface FlightUpsertWithoutAstronautInput {
@@ -364,6 +376,7 @@ export interface FlightCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   date: DateTimeInput;
+  capacity?: Maybe<Int>;
   astronaut?: Maybe<AstronautCreateManyWithoutFlightInput>;
 }
 
@@ -385,6 +398,7 @@ export interface AstronautCreateWithoutFlightInput {
 export interface FlightUpdateInput {
   name?: Maybe<String>;
   date?: Maybe<DateTimeInput>;
+  capacity?: Maybe<Int>;
   astronaut?: Maybe<AstronautUpdateManyWithoutFlightInput>;
 }
 
@@ -522,6 +536,7 @@ export interface AstronautUpdateManyDataInput {
 export interface FlightUpdateManyMutationInput {
   name?: Maybe<String>;
   date?: Maybe<DateTimeInput>;
+  capacity?: Maybe<Int>;
 }
 
 export interface AstronautSubscriptionWhereInput {
@@ -603,6 +618,7 @@ export interface Flight {
   id: ID_Output;
   name: String;
   date: DateTimeOutput;
+  capacity?: Int;
   createdAt: DateTimeOutput;
 }
 
@@ -610,6 +626,7 @@ export interface FlightPromise extends Promise<Flight>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
+  capacity: () => Promise<Int>;
   astronaut: <T = FragmentableArray<Astronaut>>(args?: {
     where?: AstronautWhereInput;
     orderBy?: AstronautOrderByInput;
@@ -628,6 +645,7 @@ export interface FlightSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  capacity: () => Promise<AsyncIterator<Int>>;
   astronaut: <T = Promise<AsyncIterator<AstronautSubscription>>>(args?: {
     where?: AstronautWhereInput;
     orderBy?: AstronautOrderByInput;
@@ -646,6 +664,7 @@ export interface FlightNullablePromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
+  capacity: () => Promise<Int>;
   astronaut: <T = FragmentableArray<Astronaut>>(args?: {
     where?: AstronautWhereInput;
     orderBy?: AstronautOrderByInput;
@@ -892,6 +911,7 @@ export interface FlightPreviousValues {
   id: ID_Output;
   name: String;
   date: DateTimeOutput;
+  capacity?: Int;
   createdAt: DateTimeOutput;
 }
 
@@ -901,6 +921,7 @@ export interface FlightPreviousValuesPromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   date: () => Promise<DateTimeOutput>;
+  capacity: () => Promise<Int>;
   createdAt: () => Promise<DateTimeOutput>;
 }
 
@@ -910,6 +931,7 @@ export interface FlightPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  capacity: () => Promise<AsyncIterator<Int>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
